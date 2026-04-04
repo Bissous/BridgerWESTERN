@@ -6,6 +6,8 @@ Automatic fishing macro for **Bridger: WESTERN** on Roblox. Detects R, G, T, F s
 
 [![Watch the demo](https://img.youtube.com/vi/DerJJCNpmmw/maxresdefault.jpg)](https://youtu.be/DerJJCNpmmw?si=bDXqY8ct1oHFolwX)
 
+[Watch on YouTube](https://youtu.be/DerJJCNpmmw?si=bDXqY8ct1oHFolwX)
+
 ## Requirements
 
 - **Windows 10 or 11**
