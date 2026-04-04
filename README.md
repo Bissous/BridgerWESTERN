@@ -1,10 +1,6 @@
 # RGTF Macro
 
-Macro de detection automatique des symboles R, G, T, F a l'ecran avec appui de touche correspondant.
-
-## Demo
-
-[![Video demo](https://img.youtube.com/vi/HAB4qjFxT8U/0.jpg)](https://youtu.be/HAB4qjFxT8U)
+Macro de peche automatique pour **Bridger: WESTERN** sur Roblox. Detecte les symboles R, G, T, F a l'ecran et appuie automatiquement sur la touche correspondante.
 
 ## Prerequis
 
