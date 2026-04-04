@@ -1,33 +1,37 @@
 # RGTF Macro
 
-Macro de peche automatique pour **Bridger: WESTERN** sur Roblox. Detecte les symboles R, G, T, F a l'ecran et appuie automatiquement sur la touche correspondante.
+Automatic fishing macro for **Bridger: WESTERN** on Roblox. Detects R, G, T, F symbols on screen and automatically presses the corresponding key.
 
-## Prerequis
+## Demo
 
-- **Windows 10 ou 11**
-- **Resolution d'ecran : 1920x1080** (obligatoire)
-- **Visual C++ Redistributable 2015-2022** — [Telecharger ici](https://aka.ms/vs/17/release/vc_redist.x64.exe) (necessaire si l'application ne se lance pas)
+[![Watch the demo](https://img.youtube.com/vi/DerJJCNpmmw/maxresdefault.jpg)](https://youtu.be/DerJJCNpmmw?si=bDXqY8ct1oHFolwX)
+
+## Requirements
+
+- **Windows 10 or 11**
+- **Screen resolution: 1920x1080** (required)
+- **Visual C++ Redistributable 2015-2022** — [Download here](https://aka.ms/vs/17/release/vc_redist.x64.exe) (needed if the application doesn't launch)
 
 ## Installation
 
-1. Telecharger `RGTF Macro.exe` depuis la page de telechargement
-2. Aucune installation requise, c'est un fichier portable
+1. Download `RGTF Macro.exe` from the download page
+2. No installation required, it's a portable file
 
-## Utilisation
+## Usage
 
-1. **Lancer en tant qu'administrateur** (clic droit > Executer en tant qu'administrateur)
-2. Appuyer sur **Run** ou **F6** pour demarrer la detection
-3. Appuyer sur **Stop** ou **F6** pour arreter
-4. La macro detecte automatiquement les symboles et appuie sur la touche correspondante
+1. **Run as administrator** (right-click > Run as administrator)
+2. Press **Run** or **F6** to start detection
+3. Press **Stop** or **F6** to stop
+4. The macro automatically detects symbols and presses the corresponding key
 
-## Raccourci
+## Shortcut
 
-| Touche | Action |
-|--------|--------|
-| F6     | Demarrer / Arreter la macro |
+| Key | Action |
+|-----|--------|
+| F6  | Start / Stop the macro |
 
-## Remarques
+## Notes
 
-- L'application doit etre lancee en **administrateur** pour pouvoir simuler les appuis de touches
-- La fenetre reste toujours au premier plan pour un acces rapide
-- La resolution 1920x1080 est requise car la zone de detection est calibree pour cette resolution
+- The application must be run as **administrator** to simulate key presses
+- The window always stays on top for quick access
+- 1920x1080 resolution is required because the detection area is calibrated for this resolution
