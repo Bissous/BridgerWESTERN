@@ -18,7 +18,7 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
 
 # --- Configuration ---
 SCREEN_CX, SCREEN_CY = 960, 551  # symbol center on 1920x1080
-HALF = 50
+HALF = 70
 SCAN_REGION = {
     "left": SCREEN_CX - HALF,
     "top": SCREEN_CY - HALF,
@@ -26,9 +26,34 @@ SCAN_REGION = {
     "height": HALF * 2,
 }
 MATCH_THRESHOLD = 0.7
-HIGH_CONFIDENCE = 0.9  # skip remaining templates if exceeded
+MATCH_MARGIN = 0.08    # best score must beat the runner-up by this much
+SCALES = (0.9, 1.0, 1.1)  # tolerate small rendering-size differences
 SCAN_INTERVAL = 0.03   # 30ms between scans
 COOLDOWN = 0.35
+
+
+def glyph_crop(tmpl, thresh=160, min_area=30, pad=3):
+    """Crop a template to its letter glyph (largest bright blob near the
+    center). The circular button frame is identical for all four symbols,
+    so matching the full image lets the frame dominate the score and any
+    symbol can trigger any key; only the letter itself is discriminative."""
+    _, binary = cv2.threshold(tmpl, thresh, 255, cv2.THRESH_BINARY)
+    n, _, stats, centroids = cv2.connectedComponentsWithStats(binary)
+    h, w = tmpl.shape
+    best, best_score = None, -1.0
+    for i in range(1, n):
+        x, y, bw, bh, area = stats[i]
+        if area < min_area:
+            continue
+        dist = ((centroids[i][0] - w / 2) ** 2 + (centroids[i][1] - h / 2) ** 2) ** 0.5
+        score = area / (1 + dist)
+        if score > best_score:
+            best_score, best = score, i
+    if best is None:
+        return tmpl
+    x, y, bw, bh, _ = stats[best]
+    return tmpl[max(0, y - pad):y + bh + pad, max(0, x - pad):x + bw + pad]
+
 
 # --- Pre-load and pre-process templates once ---
 KEYS = ("F", "G", "R", "T")
@@ -39,13 +64,12 @@ for key in KEYS:
     if tmpl is None:
         print(f"ERROR: template not found: {path}")
         sys.exit(1)
-    # Pre-resize to fit scan region if needed
-    th, tw = tmpl.shape
-    fh, fw = SCAN_REGION["height"], SCAN_REGION["width"]
-    if th > fh or tw > fw:
-        scale = min(fh / th, fw / tw) * 0.9
-        tmpl = cv2.resize(tmpl, (int(tw * scale), int(th * scale)), interpolation=cv2.INTER_AREA)
-    templates.append((key, tmpl))
+    glyph = glyph_crop(tmpl)
+    gh, gw = glyph.shape
+    for s in SCALES:
+        scaled = glyph if s == 1.0 else cv2.resize(
+            glyph, (int(gw * s), int(gh * s)), interpolation=cv2.INTER_AREA)
+        templates.append((key, scaled))
 
 
 def detect_and_press(stop_event: threading.Event):
@@ -62,18 +86,23 @@ def detect_and_press(stop_event: threading.Event):
             frame = np.asarray(sct.grab(SCAN_REGION))
             gray = cv2.cvtColor(frame, cv2.COLOR_BGRA2GRAY)
 
-            best_key = None
-            best_val = 0.0
+            # Score all templates (best scale per key): the runner-up is
+            # needed for the margin check, so never stop early (it also
+            # biased toward F, tested first, whenever scores were inflated)
+            scores = dict.fromkeys(KEYS, 0.0)
             for key, tmpl in templates:
                 res = cv2.matchTemplate(gray, tmpl, cv2.TM_CCOEFF_NORMED)
                 _, val, _, _ = cv2.minMaxLoc(res)  # faster than res.max()
-                if val > best_val:
-                    best_val = val
-                    best_key = key
-                    if val >= HIGH_CONFIDENCE:
-                        break  # confident enough, skip remaining templates
+                if val > scores[key]:
+                    scores[key] = val
+            ranked = sorted(((v, k) for k, v in scores.items()), reverse=True)
+            best_val, best_key = ranked[0]
+            runner_up = ranked[1][0]
 
-            if best_val >= MATCH_THRESHOLD and best_key:
+            # Press only on a confident AND unambiguous match: if several
+            # letters score close together it means the glyph itself was
+            # not recognized, and pressing would hit a random wrong key
+            if best_val >= MATCH_THRESHOLD and best_val - runner_up >= MATCH_MARGIN:
                 pydirectinput.press(best_key.lower())
                 last_press = time.perf_counter()
 
