@@ -43,7 +43,7 @@ for key in KEYS:
     th, tw = tmpl.shape
     fh, fw = SCAN_REGION["height"], SCAN_REGION["width"]
     if th > fh or tw > fw:
-        scale = min(fh / th, fw / tw) * 0.9  # fix: was fw/fw
+        scale = min(fh / th, fw / tw) * 0.9
         tmpl = cv2.resize(tmpl, (int(tw * scale), int(th * scale)), interpolation=cv2.INTER_AREA)
     templates.append((key, tmpl))
 

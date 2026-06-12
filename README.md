@@ -16,7 +16,7 @@ Automatic fishing macro for **Bridger: WESTERN** on Roblox. Detects R, G, T, F s
 
 ## Installation
 
-1. Download `RGTF Macro.exe` from the download page
+1. Download `RGTF Macro.exe` from the [Releases page](https://github.com/Bissous/BridgerWESTERN/releases)
 2. No installation required, it's a portable file
 
 ## Usage
@@ -32,8 +32,32 @@ Automatic fishing macro for **Bridger: WESTERN** on Roblox. Detects R, G, T, F s
 |-----|--------|
 | F6  | Start / Stop the macro |
 
+## Run from source
+
+```
+pip install -r requirements.txt
+python macro.py
+```
+
+## Build the executable
+
+```
+pip install pyinstaller
+pyinstaller "RGTF Macro.spec"
+```
+
+The executable is generated in `dist/`.
+
 ## Notes
 
 - The application must be run as **administrator** to simulate key presses
 - The window always stays on top for quick access
 - 1920x1080 resolution is required because the detection area is calibrated for this resolution
+
+## Disclaimer
+
+This tool is provided for educational purposes. Using macros may violate the Roblox Terms of Service — use at your own risk.
+
+## License
+
+[MIT](LICENSE)
