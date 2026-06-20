@@ -17,7 +17,7 @@ screen for the R, G, T and F prompts and presses the matching key automatically.
 
 ## Installation
 
-Download `RGTF Macro.exe` from the [Releases page](https://github.com/Bissous/BridgerWESTERN/releases).
+Download `RGTFMacro.exe` from the [Releases page](https://github.com/Bissous/BridgerWESTERN/releases).
 It's a portable executable, so there's nothing to install.
 
 ## Usage
@@ -39,7 +39,7 @@ python macro.py
 
 ```
 pip install pyinstaller
-pyinstaller "RGTF Macro.spec"
+pyinstaller RGTFMacro.spec
 ```
 
 The result lands in `dist/`.
