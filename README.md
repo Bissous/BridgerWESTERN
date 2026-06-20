@@ -7,6 +7,8 @@ screen for the R, G, T and F prompts and presses the matching key automatically.
 
 [![Watch the demo](https://img.youtube.com/vi/DerJJCNpmmw/maxresdefault.jpg)](https://youtu.be/DerJJCNpmmw?si=bDXqY8ct1oHFolwX)
 
+▶️ [Watch the demo on YouTube](https://youtu.be/DerJJCNpmmw?si=bDXqY8ct1oHFolwX)
+
 ## Requirements
 
 - Windows 10 or 11
