@@ -1,36 +1,30 @@
 # RGTF Macro
 
-Automatic fishing macro for **Bridger: WESTERN** on Roblox. Detects R, G, T, F symbols on screen and automatically presses the corresponding key.
+A fishing macro for *Bridger: WESTERN* on Roblox. It watches the center of the
+screen for the R, G, T and F prompts and presses the matching key automatically.
 
 ## Demo
 
 [![Watch the demo](https://img.youtube.com/vi/DerJJCNpmmw/maxresdefault.jpg)](https://youtu.be/DerJJCNpmmw?si=bDXqY8ct1oHFolwX)
 
-[Watch on YouTube](https://youtu.be/DerJJCNpmmw?si=bDXqY8ct1oHFolwX)
-
 ## Requirements
 
-- **Windows 10 or 11**
-- **Screen resolution: 1920x1080** (required)
-- **Visual C++ Redistributable 2015-2022** — [Download here](https://aka.ms/vs/17/release/vc_redist.x64.exe) (needed if the application doesn't launch)
+- Windows 10 or 11
+- Screen resolution of 1920x1080 (the scan area is calibrated for it)
+- [Visual C++ Redistributable 2015-2022](https://aka.ms/vs/17/release/vc_redist.x64.exe), if the app fails to start
 
 ## Installation
 
-1. Download `RGTF Macro.exe` from the [Releases page](https://github.com/Bissous/BridgerWESTERN/releases)
-2. No installation required, it's a portable file
+Download `RGTF Macro.exe` from the [Releases page](https://github.com/Bissous/BridgerWESTERN/releases).
+It's a portable executable, so there's nothing to install.
 
 ## Usage
 
-1. **Run as administrator** (right-click > Run as administrator)
-2. Press **Run** or **F6** to start detection
-3. Press **Stop** or **F6** to stop
-4. The macro automatically detects symbols and presses the corresponding key
+1. Run the executable as administrator (required to simulate key presses).
+2. Press Run, or F6, to start detection.
+3. Press Stop, or F6, to stop.
 
-## Shortcut
-
-| Key | Action |
-|-----|--------|
-| F6  | Start / Stop the macro |
+The window stays on top so you can toggle it without leaving the game.
 
 ## Run from source
 
@@ -46,17 +40,12 @@ pip install pyinstaller
 pyinstaller "RGTF Macro.spec"
 ```
 
-The executable is generated in `dist/`.
-
-## Notes
-
-- The application must be run as **administrator** to simulate key presses
-- The window always stays on top for quick access
-- 1920x1080 resolution is required because the detection area is calibrated for this resolution
+The result lands in `dist/`.
 
 ## Disclaimer
 
-This tool is provided for educational purposes. Using macros may violate the Roblox Terms of Service — use at your own risk.
+For educational purposes. Using macros may breach the Roblox Terms of Service;
+use it at your own risk.
 
 ## License
 
